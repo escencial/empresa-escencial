@@ -1,0 +1,100 @@
+ #Barralateral ul {
+    list-style: none;
+    padding: 0;
+    background:#FFF; 
+
+  }
+   #Barralateral a {
+    list-style: none;
+    padding: 0;
+    color: black;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+ /*PRIMER NIVEL*/
+  #Barralateral> ul {
+    background:#FFF; 
+  }
+
+  #Barralateral li a {
+    display: block;
+    padding: 10px;
+    opacity: 1;
+    display: block;
+    border-bottom: 1px solid rgba(0,0,0, 0.2);
+    border-top: 1px solid rgba(255,255,255, 0.2);
+    /*background:#3e3f44;*/
+    background:#F5F5DC;
+    text-decoration:none;
+    color:black;
+    text-shadow: 1px 0px 1px rgba(0,0,0,0.2);
+    filter: dropshadow(color=#000, offx=1, offy=0);
+    padding:10px;
+     font-family: 'Orbitron', sans-serif;
+     text-align: center;
+  }
+   #Barralateral li:hover a {
+    
+    background:#6D9E61;
+    opacity: 1;
+    
+  }
+
+  #ItemCompras {
+  display: none;
+  transition:all 0.5s;
+  }
+
+  #Barralateral li ul li a{
+    font-size:14px;
+    color:black;
+    text-shadow: 1px 0px 1px rgba(255,255,255,0.5); 
+     margin: auto;
+}
+
+ #Barralateral li ul li:hover a{
+    background:black;
+     color:yellow;
+     right: 20%;
+     font-family: 'Orbitron', sans-serif;
+     text-align: center;
+}
+
+#ItemCompras:target {
+  display: block;
+}
+
+#ItemProduccion{
+  display: none;
+  }
+
+#ItemProduccion:target {
+  display: block;
+}
+
+#ItemPedidos{
+  display: none;
+  }
+
+#ItemPedidos:target {
+  display: block;
+}
+
+#ItemVentas{
+  display: none;
+  }
+
+#ItemVentas:target {
+  display: block;
+}
+
+#ItemInventario{
+  display: none;
+  }
+
+#ItemInventario:target {
+  display: block;
+}
+
+ 

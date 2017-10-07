@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="EstiloLogin.css" rel="stylesheet" type="text/css" media="screen" />
+<script type="text/javascript" src="Balance.js"></script>
+<title>Registro de usuarios</title>
+</head>
+
+<body>
+    <!--<form name="contactform" method="POST" action="Validar_User.php"> 
+    <h2>Ingreso de usuarios </h2>
+    <input  type="email" name="Correo" class='form-control' placeholder="&#x2709;  Ingrese Correo Electronico" required="required" >
+    <input  type="password" name="ContraseIN" placeholder="&#128272;Contraseña" class='form-control'required="required" >
+    <input type="submit" name="ingresar" id="enviar" value="Ingresar">
+    </form>
+
+
+    you can substitue the span of reauth email for a input with the email and
+    include the remember me checkbox
+    -->
+    <div class="container">
+        <div class="card card-container">
+            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+            <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+            <p id="profile-name" class="profile-name-card"></p>
+            <form class="form-signin">
+                <span id="reauth-email" class="reauth-email"></span>
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <div id="remember" class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Recuerdame
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Ingresar</button>
+            </form><!-- /form -->
+            <a href="#" class="forgot-password">
+                Olvido la contraeña?
+            </a>
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+</body>
+</html> 

@@ -1,0 +1,26 @@
+<?php echo $this->titulo;
+  ?>
+  <?php 
+
+   if (isset($this->posts)) {
+      $n= count($this->posts);
+     for ($i=0; $i <count($this->posts) ; $i++) { 
+            echo "<table>";  
+          $x=$this->posts[$i]['idElementos'];
+          $x1=$this->posts[$i]['Simbolo'];
+          $x2=$this->posts[$i]['Nombre'];
+          $x3=$this->posts[$i]['MMolar'];
+          echo "<tr>";
+               echo "<td>$x</td>";
+               echo "<td>$x1</td>";
+               echo "<td>$x2</td>";
+               echo "<td>$x3</td>";  
+           echo "</tr>";
+    echo "</table>";
+          }     
+     //print_r($this->posts);
+     
+   }
+
+  ?>
+

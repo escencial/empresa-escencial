@@ -1,0 +1,59 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="EstiloLogin.css" rel="stylesheet" type="text/css" media="screen" />
+<script type="text/javascript" src="Balance.js"></script>
+<title>Registro de usuarios</title>
+</head>
+
+<body>
+
+<form name="contactform" method="POST" action=<?php echo BASE_URL.'usuario'.DS.'validar';?> > 
+	<h2>Registro Nuevo Usuario </h2>
+    <input  type="text" name="Nombre" class='form-control' placeholder="&#x1F464; Ingrese Nombre Completo" required="required" >
+    <input  type="text" name="Direccion" class='form-control' placeholder="&#x1F3E0;  Ingrese Direccion" required="required" >
+    <input  type="text" name="Celular" class='form-control' placeholder="&#x1F4F1;  Celular" required="required" pattern="^[3]\d{9}$">
+    <input  type="email" name="Email" class='form-control' placeholder="&#x2709;  Ingrese Correo Electronico" required="required" >
+    <?php
+ 
+    if (isset($valuser)) {
+        if ($valuser==true) {
+          echo "<label id='papelrl'><font color='red'>Correo electronico ya se encuentra registrado.</font> </label>";
+        }
+    } 
+
+    if (isset($valemail)) {
+        if ($valemail==true) {
+          echo "<label id='papelrl'><font color='red'>Direccion de correo electronico no valida.</font> </label>";
+        }
+    } 
+    ?>
+    <input  type="password" name="Contrase"  class='form-control' placeholder="&#128272;Contraseña" required="required" >
+    <input  type="password" name="Conf_Contrase" class='form-control' placeholder="&#128272; Confirmar Contraseña" required="required" >
+      <?php
+    if (isset($valcont)) {
+        if ($valcont==true) {
+          echo "<label id='papelrl'><font color='red'>Validacion de contraseñas no coincide. Por favor ingresar nuevamente.</font> </label>";
+        }
+    } 
+
+     if (isset($valespacios)) {
+        if ($valespacios==true) {
+          echo "<label id='papelrl'><font color='red'>Campos vacios. Diligencie todas los campos correctamente</font> </label>";
+        }
+    }
+    ?>
+    <input type="submit" name="ingresar" id="enviar" value="Ingresar" class='btn btn-primary btn-block'  onClick="comprobarClave()">  
+    <?php
+    if (isset($_GET["mensaje"])) {
+        echo "</br>";
+        echo "<label id='papelrl3'>Correo Registrado Anteriormente.<font color='red'></label>";
+        echo "</br>";
+        echo "<td><a href='Singin.php'>Iniciar Seccion</a></td>";
+    }    
+   ?>   
+    </form>
+</body>
+</html>

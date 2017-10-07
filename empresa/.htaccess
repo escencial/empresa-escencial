@@ -1,0 +1,15 @@
+# Activar RewriteEngine
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L] 
+
+
+# Reescribir la URL solicitada por el usuario
+#   Entrada:  info_plataform/ID_PLATAFORMA/NOMBRE
+#   Salida: info_plataform.php?id=ID_PLATAFORMA&nombre=NOMBRE
+#   RewriteRule ^info_plataform/(\w+)/(\w+)/?$ info_plataform.php?dat1=$1&dat2=$2
+#   RewriteCond ^plataform/?$ plataform.php

@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="EstiloLogin.css" rel="stylesheet" type="text/css" media="screen" />
+<title>Codigo Verificacion de Cuenta</title>
+</head>
+
+<body>
+    <form name="Validacion Codigo" method="POST" action=<?php echo BASE_URL.'usuario'.DS.'validar';?>> 
+	<p class="text-primary" class="text-center">Por favor ingrese correo, contraseña  y codigo de verificacion (Se ha enviado un mensaje con el Codigo al correo registrado por favor ingreselo)</p>
+    <h2>Codigo de Validacion </h2>
+    <input  type="text" class='form-control' name="Usuario" placeholder="&#128272; Correo Electronico" >
+    <input  type="password" class='form-control' name="Contrase" placeholder="&#128272;Contraseña"  >
+    <input  type="text" name="Codigo" class='form-control' placeholder="&#128272; Ingrese codigo de verificacion" >
+    <input type="submit" class='btn btn-primary btn-block' name="ingresar" id="enviar" value="Ingresar">
+    <p class="text-danger" class="text-center" >Nota: Si no aparece el mensaje en su bandeja de entrada busquelo en Spam</p>
+    </form>
+</body>
+</html>

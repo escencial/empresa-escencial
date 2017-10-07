@@ -1,0 +1,48 @@
+<?php
+  //   $redir=BASE_URL.'elementos'.DS.'elementos2';
+  //   echo "<form name='Agregar' id='Fagregar' method='POST' action=$redir>"; 
+  //   echo "<fieldset id='campos'>";
+  //   echo "<h4>Datos Nuevo Cliente </h4>";
+  //   echo "</fieldset>";
+  //   echo "<fieldset id='botones'>"; 
+  //   //echo "<select id='Id_Cliente' name='MaxCliente' class='form-control'>";   
+  //     //  echo "<option value="1">"1"</option>";
+  // echo "<input type='text' id='Precio' class='form-control' placeholder='Ingrese valor de A' name='valor_a' required='required' onChange='validarSiNumero(this.value);'>"; 
+  // echo "<label for='listaPro'>Valor A</label>";
+  //   echo "<input type='text' id='Precio' class='form-control' placeholder='Ingrese valor de B' name='valor_b' required='required' onChange='validarSiNumero(this.value);'>"; 
+  // echo "<label for='listaPro'>Valor B</label>";
+  //   echo "<input type='text' id='Precio' class='form-control' placeholder='Ingrese valor de C' name='valor_c' required='required' onChange='validarSiNumero(this.value);'>"; 
+  // echo "<label for='listaPro'>Valor C</label>";
+  // echo "<input type='submit' name='AgregarCompra' id='e' class='btn btn-primary btn-block' value='Agregar'>";
+  //   echo  "</fieldset>";
+  //   echo "</form>";
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+Nuevo Proveedor -->
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+//if (isset($_GET["Proveedores"])) {
+    $redir=BASE_URL.'elementos'.DS.'Enviar';
+    echo "<form name='Agregar' id='Fagregar' method='POST' action=$redir>"; 
+    echo "<fieldset id='campos'>";
+    echo "<h4>Datos Nuevo Proveedor </h4>";
+    //require ("ConsultaProductos.php");
+    echo "</fieldset>";
+    echo "<fieldset id='botones'>";
+    //$NuevoProveedor=new ConsultarProductos();
+    //$NroProveedor=$NuevoProveedor->Max_Proveedor(); 
+    //echo "<select id='Idproveedor' name='MaxProveedor' class='form-control'>";   
+       // echo "<option value=".$NroProveedor.">".$NroProveedor."</option>";
+    //echo "</select>";   
+    echo "<input type='text' id='Proveedor' class='form-control' placeholder='Ingrese Nombre de Proveedor' name='NombreProveedor' required='required'>";
+    echo "<input type='text' id='Direccion' class='form-control' placeholder='Ingrese Direccion Proveedor' name='DireccionProveedor' required='required'>";
+    echo "<input type='text' id='Telelefono' class='form-control' placeholder='Ingrese Telefono Proveedor' name='TelefonoProveedor' required='required'>"; 
+    echo "<input type='text' id='Nit' class='form-control' placeholder='Ingrese Nit Proveedor' name='NitProveedor' required='required'>";
+    echo "<input type='text' id='Nit' class='form-control' placeholder='Ingrese Correo Proveedor' name='CorreoProveedor' required='required'>";
+    echo "<input type='text' id='Nit' class='form-control' placeholder='Ingrese Web Proveedor' name='WebProveedor' required='required'>";
+    echo "<input type='submit' name='AgregarProveedor' id='e' class='btn btn-primary btn-block' value='Agregar'>";
+    echo  "</fieldset>";
+    echo "</form>";
+  //} 
+?>
+
+

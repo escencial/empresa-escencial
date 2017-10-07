@@ -1,0 +1,698 @@
+
+ <?php
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+Vistas Proveedor -->
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+if (isset($_GET["Proveedores"])) {
+    $redir=BASE_URL.'admin'.DS.'Nuevo_Prov';
+    echo "<form name='Agregar' id='Fagregar' method='POST' action=$redir>"; 
+    echo "<fieldset id='campos'>";
+    echo "<h4>Datos Nuevo Proveedor </h4>";
+    //require ("ConsultaProductos.php");
+    echo "</fieldset>";
+    echo "<fieldset id='botones'>";
+    //$NuevoProveedor=new ConsultarProductos();
+    //$NroProveedor=$NuevoProveedor->Max_Proveedor(); 
+    //echo "<select id='Idproveedor' name='MaxProveedor' class='form-control'>";   
+       // echo "<option value=".$NroProveedor.">".$NroProveedor."</option>";
+    //echo "</select>";   
+    echo "<input type='text' id='Proveedor' class='form-control' placeholder='Ingrese Nombre de Proveedor' name='NombreProveedor' required='required'>";
+    echo "<input type='text' id='Direccion' class='form-control' placeholder='Ingrese Direccion Proveedor' name='DireccionProveedor' required='required'>";
+    echo "<input type='text' id='Telelefono' class='form-control' placeholder='Ingrese Telefono Proveedor' name='TelefonoProveedor' required='required'>"; 
+    echo "<input type='text' id='Nit' class='form-control' placeholder='Ingrese Nit Proveedor' name='NitProveedor' required='required'>";
+    echo "<input type='text' id='Nit' class='form-control' placeholder='Ingrese Correo Proveedor' name='CorreoProveedor' required='required'>";
+    echo "<input type='text' id='Nit' class='form-control' placeholder='Ingrese Web Proveedor' name='WebProveedor' required='required'>";
+    echo "<input type='submit' name='AgregarProveedor' id='e' class='btn btn-primary btn-block' value='Agregar'>";
+    echo  "</fieldset>";
+    echo "</form>";
+  } 
+
+if (isset($_GET["Proveedores"])) {
+   $redir=BASE_URL.'admin'.DS.'Nueva_Casa';
+    echo "<form name='Agregar' id='Fagregar' method='POST' action=$redir>"; 
+    echo "<fieldset id='campos'>";
+    echo "<h4>Datos Nueva Casa </h4>";
+    echo "</fieldset>";
+    echo "<fieldset id='botones'>";  
+    echo "<input type='text' id='Casa' class='form-control' placeholder='Ingrese Nombre de Proveedor' name='NombreCasa' required='required'>";
+    echo "<input type='submit' name='AgregarProveedor' id='e' class='btn btn-primary btn-block' value='Agregar'>";
+    echo  "</fieldset>";
+    echo "</form>";
+  } 
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+Vistas Producto Terminado -->
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+if ($ver_vista=='Productos') {
+   $redir=BASE_URL.'admin'.DS.'Nuevo_Prod';
+    echo "<form name='Agregar' id='Fagregar' method='POST' action=$redir>"; 
+    echo "<fieldset id='campos'>";
+    echo "<h4>Datos Nueva Fragancia </h4>";
+    echo "</fieldset>";
+    echo "<fieldset id='botones'>";  
+    echo "<input type='text' id='NombreProducto' class='form-control' placeholder='Ingrese Nombre de Fragancia' name='NombreProducto' required='required'>";
+     echo "<select id='Casa' name='CasaProducto' class='form-control'>"; 
+     if (isset($casas)) {
+     for ($i=0; $i <count($casas) ; $i++) {  
+          $id=$casas[$i]['id'];  
+          $Nom=$casas[$i]['nombre'];
+          echo "<option value=".$id.">".$Nom."</option>";
+          } 
+      } 
+     echo "</select>";
+        echo "<select id='Genero' name='GeneroProducto' class='form-control'>";   
+        echo "<option value='Femenino'>Femenino</option>";
+        echo "<option value='Masculino'>Masculino</option>";
+     echo "</select>";
+    echo "<input type='text' id='Perfil' class='form-control' placeholder='Ingrese Perfil Fragancia' name='PerfilProducto' required='required'>";
+    echo '<div class="container">';
+    $link=BASE_URL.'admin'.DS.'Lista_Productos';
+    echo "<input type='submit' name='AgregarProveedor' id='e' class='btn btn-success' value='Agregar'>";
+    echo '<a href='.$link.' class="btn btn-warning" role="button">Ver Registros</a>';
+    echo '</div>';
+    echo  "</fieldset>";
+    echo "</form>";
+} 
+
+if ($ver_vista=='EditarProductos') {
+   $redir=BASE_URL.'admin'.DS.'Modificar_Producto'.DS.$CamposEdit['id'];
+    echo "<form name='Agregar' id='Fagregar' method='POST' action=$redir>"; 
+    echo "<fieldset id='campos'>";
+    echo "<h4>Datos Nueva Fragancia </h4>";
+    echo "</fieldset>";
+    echo "<fieldset id='botones'>";  
+    echo "<input type='text' id='NombreProducto' class='form-control' placeholder='Ingrese Nombre de Fragancia' name='NombreProducto' required='required' value=".$CamposEdit['nombre'].">";
+     echo "<select id='Casa' name='CasaProducto' class='form-control'>"; 
+     if (isset($casas)) {
+     for ($i=0; $i <count($casas) ; $i++) {  
+          $id=$casas[$i]['id'];  
+          $Nom=$casas[$i]['nombre'];
+          
+          if ($id==$CamposEdit['casa']) {
+            echo "<option SELECTED value=".$id.">".$Nom."</option>";
+          } else {
+            echo "<option value=".$id.">".$Nom."</option>";
+          }
+        } 
+      }  
+     echo "</select>";
+        echo "<select id='Genero' name='GeneroProducto' class='form-control'>";         
+        if ($CamposEdit['genero']=='Femenino') {
+            echo "<option SELECTED value='Femenino'>Femenino</option>";
+            echo "<option value='Masculino'>Masculino</option>";
+          } else {
+            echo "<option  value='Femenino'>Femenino</option>";
+            echo "<option SELECTED value='Masculino'>Masculino</option>";
+          }
+     echo "</select>";
+    echo "<input type='text' id='Perfil' class='form-control' placeholder='Ingrese Perfil Fragancia' name='PerfilProducto' required='required' value=".$CamposEdit['perfil'].">";
+    echo '<div class="container">';
+
+    $link=BASE_URL.'admin'.DS.'Lista_Productos';
+    echo "<input type='submit' name='AgregarProveedor' id='e' class='btn btn-success' value='Modificar'>";
+    echo '<a href='.$link.' class="btn btn-warning" role="button">Ver Registros</a>';
+    echo '</div>';
+    echo  "</fieldset>";
+    echo "</form>";
+} 
+
+if ($ver_vista=='ListaProductos') {
+  if (isset($casas)) {  
+      echo "<h2>LISTADO DE PRODUCTOS TERMINADOS</h2>";
+      echo "<br>";
+      $redir=BASE_URL.'admin'.DS.'Gestion'.DS.'Productos';
+      echo "<a class='btn btn-success' style='font-size: 20px;' title='Graba una pregunta' href=".$redir."><i class='fa fa-plus-square' aria-hidden='true'></i>&nbsp;Nuevo Producto</a>";
+      echo "<br>";
+      echo "<br>";
+                echo "<table>";
+                 echo "<thead>";
+                    echo "<tr>";
+                        echo "<th>ID PT</th>";
+                        echo "<th>Nombre</th>";
+                        echo "<th>Codigo</th>";
+                        echo "<th>Casa</th>";
+                        echo "<th>Genero</th>";
+                        echo "<th>Perfil</th>";
+                        echo "<th>Editar</th>";
+                        echo "<th>Eliminar</th>";
+                     echo "</tr>";
+                 echo "</thead>";
+              echo "<tbody>"; 
+      for ($i=0; $i <count($casas)-1 ; $i++) {  
+          $id=$casas[$i]['id'];
+          $nom=$casas[$i]['nombre'];
+          $cod=$casas[$i]['codproducto'];
+          $casa=$casas[$i]['casa'];
+          $genero=$casas[$i]['genero'];
+          $perfil=$casas[$i]['perfil'];
+            echo "<tr>";
+               echo "<td>".$id."</td>";   
+               echo "<td>".$nom."</td>"; 
+               echo "<td>".$cod."</td>"; 
+               echo "<td>".$casa."</td>"; 
+               echo "<td>".$genero."</td>"; 
+               echo "<td>".$perfil."</td>"; 
+               $delete=BASE_URL.'admin'.DS.'Eliminar_Producto'.DS.$id;
+               $editar=BASE_URL.'admin'.DS.'Editar_Producto'.DS.$id;
+                echo "<td><a class='btn btn-warning' style='font-size: 15px;' title='Editar Producto' href=".$editar."><i class='fa fa-pencil' aria-hidden='true' fa-2x></i></a></td>";
+                echo "<td><a class='btn btn-danger' style='font-size: 15px;' title='Eliminar Producto' href=".$delete."><i class='fa fa-trash-o' aria-hidden='true' fa-2x></i></a></td>";  
+            echo "</tr>"; 
+      }
+            echo "</tbody>";
+            echo "</table>"; 
+      }   
+   }
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+Vistas Materias Primas-->
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+if ($ver_vista=='MPrimas') {
+   $redir=BASE_URL.'admin'.DS.'Nuevo_MPri';
+    echo "<form name='Agregar' id='Fagregar' method='POST' action=$redir>"; 
+    echo "<fieldset id='campos'>";
+    echo "<h4>Datos Nueva Fragancia </h4>";
+    echo "</fieldset>";
+    echo "<fieldset id='botones'>";  
+    echo "<input type='text' id='NombreProducto' class='form-control' placeholder='Ingrese Nombre de Fragancia' name='NombreProducto' required='required'>";
+     echo "<select id='Casa' name='CasaProducto' class='form-control'>"; 
+     if (isset($casas)) {
+     for ($i=0; $i <count($casas) ; $i++) {  
+          $id=$casas[$i]['id'];  
+          $Nom=$casas[$i]['nombre'];
+          echo "<option value=".$id.">".$Nom."</option>";
+          } 
+      } 
+     echo "</select>";
+    echo "<select id='Genero' name='GeneroProducto' class='form-control'>";   
+        echo "<option value='FRF-Femenino'>Fragancia Femenina</option>";
+        echo "<option value='FRM-Masculino'>Fragancia Masculina</option>";
+        echo "<option value='EMP-Empaque'>Empaque</option>";
+        echo "<option value='Sol-Solvente'>Solvente</option>";
+        echo "<option value='Col-Colorante'>Colorante</option>";
+        echo "<option value='FLV-Sabor'>Sabor</option>";
+        echo "<option value='RAW-MateriaP'>MateriaP</option>";
+     echo "</select>"; 
+    echo "<input type='text' id='Perfil' class='form-control' placeholder='Ingrese Perfil Fragancia' name='PerfilProducto' required='required'>";
+    echo '<div class="container">';
+    $link=BASE_URL.'admin'.DS.'Lista_MPrimas';
+    echo "<input type='submit' name='AgregarProveedor' id='e' class='btn btn-success' value='Agregar'>";
+    echo '<a href='.$link.' class="btn btn-warning" role="button">Ver Registros</a>';
+    echo '</div>';
+    echo  "</fieldset>";
+    echo "</form>";
+} 
+
+if ($ver_vista=='ListaMPrimas') {
+  if (isset($casas)) {  
+      echo "<h2>LISTADO DE MATERIAS PRIMAS</h2>";
+      echo "<br>";
+      $redir=BASE_URL.'admin'.DS.'Gestion'.DS.'MPrimas';
+      echo "<a class='btn btn-success' style='font-size: 20px;' title='Graba una pregunta' href=".$redir."><i class='fa fa-plus-square' aria-hidden='true'></i>&nbsp;Nueva Materia Prima</a>";
+      echo "<br>";
+      echo "<br>";
+                echo "<table>";
+                 echo "<thead>";
+                    echo "<tr>";
+                        echo "<th>ID MP</th>";
+                        echo "<th>Nombre</th>";
+                        echo "<th>Codigo</th>";
+                        echo "<th>Casa</th>";
+                        echo "<th>Tipo</th>";
+                        echo "<th>Perfil</th>";
+                        echo "<th>Editar</th>";
+                        echo "<th>Eliminar</th>";
+                     echo "</tr>";
+                 echo "</thead>";
+              echo "<tbody>"; 
+      for ($i=0; $i <count($casas)-1 ; $i++) {  
+          $id=$casas[$i]['id'];
+          $nom=$casas[$i]['nombre'];
+          $cod=$casas[$i]['codproducto'];
+          $casa=$casas[$i]['casa'];
+          $genero=$casas[$i]['genero'];
+          $perfil=$casas[$i]['perfil'];
+            echo "<tr>";
+               echo "<td>".$id."</td>";   
+               echo "<td>".$nom."</td>"; 
+               echo "<td>".$cod."</td>"; 
+               echo "<td>".$casa."</td>"; 
+               echo "<td>".$genero."</td>"; 
+               echo "<td>".$perfil."</td>"; 
+               $delete=BASE_URL.'admin'.DS.'Eliminar_MPrima'.DS.$id;
+               $editar=BASE_URL.'admin'.DS.'Editar_MPrima'.DS.$id;
+                echo "<td><a class='btn btn-warning' style='font-size: 15px;' title='Editar Producto' href=".$editar."><i class='fa fa-pencil' aria-hidden='true' fa-2x></i></a></td>";
+                echo "<td><a class='btn btn-danger' style='font-size: 15px;' title='Eliminar Producto' href=".$delete."><i class='fa fa-trash-o' aria-hidden='true' fa-2x></i></a></td>";  
+            echo "</tr>"; 
+      }
+            echo "</tbody>";
+            echo "</table>"; 
+      }   
+   } 
+
+
+
+if ($ver_vista=='EditarMPrima') {
+   $redir=BASE_URL.'admin'.DS.'Modificar_MPrima'.DS.$CamposEdit['id'];
+    echo "<form name='Agregar' id='Fagregar' method='POST' action=$redir>"; 
+    echo "<fieldset id='campos'>";
+    echo "<h4>Datos Materia Prima Nro".$CamposEdit['id']."</h4>";
+    echo "</fieldset>";
+    echo "<fieldset id='botones'>";  
+    echo "<input type='text' id='NombreProducto' class='form-control' placeholder='Ingrese Nombre de Fragancia' name='NombreProducto' required='required' value=".$CamposEdit['nombre'].">";
+     echo "<select id='Casa' name='CasaProducto' class='form-control'>"; 
+     if (isset($casas)) {
+     for ($i=0; $i <count($casas) ; $i++) {  
+          $id=$casas[$i]['id'];  
+          $Nom=$casas[$i]['nombre'];
+          
+          if ($id==$CamposEdit['casa']) {
+            echo "<option SELECTED value=".$id.">".$Nom."</option>";
+          } else {
+            echo "<option value=".$id.">".$Nom."</option>";
+          }
+        } 
+      }  
+     echo "</select>";
+        echo "<select id='Genero' name='GeneroProducto' class='form-control'>";
+        $Tipo=$CamposEdit['genero'];
+        switch ($Tipo) {
+        case "FRF-Femenino":
+        echo "<option SELECTED value='FRF-Femenino'>Fragancia Femenina</option>";
+        echo "<option value='FRM-Masculino'>Fragancia Masculina</option>";
+        echo "<option value='EMP-Empaque'>Empaque</option>";
+        echo "<option value='Sol-Solvente'>Solvente</option>";
+        echo "<option value='Col-Colorante'>Colorante</option>";
+        echo "<option value='FLV-Sabor'>Sabor</option>";
+        echo "<option value='RAW-MateriaP'>Materia Prima</option>";
+        break;
+        case "FRM-Masculino":
+        echo "<option value='FRF-Femenino'>Fragancia Femenina</option>";
+        echo "<option SELECTED value='FRM-Masculino'>Fragancia Masculina</option>";
+        echo "<option value='EMP-Empaque'>Empaque</option>";
+        echo "<option value='Sol-Solvente'>Solvente</option>";
+        echo "<option value='Col-Colorante'>Colorante</option>";
+        echo "<option value='FLV-Sabor'>Sabor</option>";
+        echo "<option value='RAW-MateriaP'>Materia Prima</option>";
+        break;
+        case "EMP-Empaque":
+        echo "<option value='FRF-Femenino'>Fragancia Femenina</option>";
+        echo "<option value='FRM-Masculino'>Fragancia Masculina</option>";
+        echo "<option SELECTED  value='EMP-Empaque'>Empaque</option>";
+        echo "<option value='Sol-Solvente'>Solvente</option>";
+        echo "<option value='Col-Colorante'>Colorante</option>";
+        echo "<option value='FLV-Sabor'>Sabor</option>";
+        echo "<option value='RAW-MateriaP'>Materia Prima</option>";
+        break;
+        case "Sol-Solvente":
+        echo "<option value='FRF-Femenino'>Fragancia Femenina</option>";
+        echo "<option value='FRM-Masculino'>Fragancia Masculina</option>";
+        echo "<option value='EMP-Empaque'>Empaque</option>";
+        echo "<option SELECTED value='Sol-Solvente'>Solvente</option>";
+        echo "<option value='Col-Colorante'>Colorante</option>";
+        echo "<option value='FLV-Sabor'>Sabor</option>";
+        echo "<option value='RAW-MateriaP'>Materia Prima</option>";
+        break;
+        case "Col-Colorante":
+        echo "<option value='FRF-Femenino'>Fragancia Femenina</option>";
+        echo "<option value='FRM-Masculino'>Fragancia Masculina</option>";
+        echo "<option value='EMP-Empaque'>Empaque</option>";
+        echo "<option value='Sol-Solvente'>Solvente</option>";
+        echo "<option SELECTED value='Col-Colorante'>Colorante</option>";
+        echo "<option value='FLV-Sabor'>Sabor</option>";
+        echo "<option value='RAW-MateriaP'>Materia Prima</option>";
+        break;
+        case "FLV-Sabor":
+        echo "<option value='FRF-Femenino'>Fragancia Femenina</option>";
+        echo "<option value='FRM-Masculino'>Fragancia Masculina</option>";
+        echo "<option value='EMP-Empaque'>Empaque</option>";
+        echo "<option value='Sol-Solvente'>Solvente</option>";
+        echo "<option value='Col-Colorante'>Colorante</option>";
+        echo "<option SELECTED value='FLV-Sabor'>Sabor</option>";
+        echo "<option value='RAW-MateriaP'>Materia Prima</option>";
+        break;
+
+        case "RAW-MateriaP":
+        echo "<option value='FRF-Femenino'>Fragancia Femenina</option>";
+        echo "<option value='FRM-Masculino'>Fragancia Masculina</option>";
+        echo "<option value='EMP-Empaque'>Empaque</option>";
+        echo "<option value='Sol-Solvente'>Solvente</option>";
+        echo "<option value='Col-Colorante'>Colorante</option>";
+        echo "<option value='FLV-Sabor'>Sabor</option>";
+        echo "<option SELECTED value='RAW-MateriaP'>Materia Prima</option>";
+        break;
+        }         
+     echo "</select>";
+    echo "<input type='text' id='Perfil' class='form-control' placeholder='Ingrese Perfil Fragancia' name='PerfilProducto' required='required' value=".$CamposEdit['perfil'].">";
+    echo '<div class="container">';
+
+    $link=BASE_URL.'admin'.DS.'Lista_MPrimas';
+    echo "<input type='submit' name='AgregarProveedor' id='e' class='btn btn-success' value='Modificar'>";
+    echo '<a href='.$link.' class="btn btn-warning" role="button">Ver Registros</a>';
+    echo '</div>';
+    echo  "</fieldset>";
+    echo "</form>";
+} 
+#########################################################################################################
+# Vista Formulacion
+#########################################################################################################
+if ($ver_vista=='ListaFormulas') {
+  if (isset($casas)) {  
+      echo "<h2>LISTADO DE FORMULAS PRODUCTOS</h2>";
+      echo "<br>";
+      $redir=BASE_URL.'admin'.DS.'Formulado'.DS.'ListaFormulas';
+      echo "<a class='btn btn-success' style='font-size: 20px;' title='Lista Formulas' href=".$redir."><i class='fa fa-plus-square' aria-hidden='true'></i>&nbsp;Ver Formulas</a>";
+      echo "<br>";
+      echo "<br>";
+                echo "<table>";
+                 echo "<thead>";
+                    echo "<tr>";
+                        echo "<th>ID PT</th>";
+                        echo "<th>Nombre</th>";
+                        echo "<th>Codigo</th>";
+                        echo "<th>Casa</th>";
+                        echo "<th>Genero</th>";
+                        echo "<th>Perfil</th>";
+                        echo "<th>Abrir</th>";
+                     echo "</tr>";
+                 echo "</thead>";
+              echo "<tbody>"; 
+      for ($i=0; $i <count($casas)-1 ; $i++) {  
+          $id=$casas[$i]['id'];
+          $nom=$casas[$i]['nombre'];
+          $cod=$casas[$i]['codproducto'];
+          $casa=$casas[$i]['casa'];
+          $genero=$casas[$i]['genero'];
+          $perfil=$casas[$i]['perfil'];
+            echo "<tr>";
+               echo "<td>".$id."</td>";   
+               echo "<td>".$nom."</td>"; 
+               echo "<td>".$cod."</td>"; 
+               echo "<td>".$casa."</td>"; 
+               echo "<td>".$genero."</td>"; 
+               echo "<td>".$perfil."</td>"; 
+               $editar=BASE_URL.'admin'.DS.'VerListadoFormula'.DS.$id;
+                echo "<td><a class='btn btn-warning' style='font-size: 15px;' title='Ver Componentes Formula' href=".$editar."><i class='fa fa-sign-in' aria-hidden='true' fa-2x></i></a></td>"; 
+            echo "</tr>"; 
+      }
+            echo "</tbody>";
+            echo "</table>"; 
+      }   
+   }
+
+
+
+if ($ver_vista=='ListaFormulacion') {
+  if (isset($casas)) {  
+      echo "<h2>LISTADO DE PRODUCTOS PENDIENTES POR FORMULAR</h2>";
+      echo "<br>";
+      $redir=BASE_URL.'admin'.DS.'Formulado'.DS.'ListaFormulas';
+      echo "<a class='btn btn-success' style='font-size: 20px;' title='Lista Formulas' href=".$redir."><i class='fa fa-plus-square' aria-hidden='true'></i>&nbsp;Ver Formulas</a>";
+      echo "<br>";
+      echo "<br>";
+                echo "<table>";
+                 echo "<thead>";
+                    echo "<tr>";
+                        echo "<th>ID PT</th>";
+                        echo "<th>Nombre</th>";
+                        echo "<th>Codigo</th>";
+                        echo "<th>Casa</th>";
+                        echo "<th>Genero</th>";
+                        echo "<th>Perfil</th>";
+                        echo "<th>Formular</th>";
+                     echo "</tr>";
+                 echo "</thead>";
+              echo "<tbody>"; 
+      for ($i=0; $i <count($casas)-1 ; $i++) {  
+          $id=$casas[$i]['id'];
+          $nom=$casas[$i]['nombre'];
+          $cod=$casas[$i]['codproducto'];
+          $casa=$casas[$i]['casa'];
+          $genero=$casas[$i]['genero'];
+          $perfil=$casas[$i]['perfil'];
+            echo "<tr>";
+               echo "<td>".$id."</td>";   
+               echo "<td>".$nom."</td>"; 
+               echo "<td>".$cod."</td>"; 
+               echo "<td>".$casa."</td>"; 
+               echo "<td>".$genero."</td>"; 
+               echo "<td>".$perfil."</td>"; 
+               $editar=BASE_URL.'admin'.DS.'Formulas'.DS.$id;
+                echo "<td><a class='btn btn-warning' style='font-size: 15px;' title='Editar Producto' href=".$editar."><i class='fa fa-flask' aria-hidden='true' fa-2x></i></a></td>"; 
+            echo "</tr>"; 
+      }
+            echo "</tbody>";
+            echo "</table>"; 
+      }   
+   }
+
+   if ($ver_vista=='Formulas') {
+   $redir=BASE_URL.'admin'.DS.'Dosis_Formula'.DS.$idformula;
+    echo "<form name='Agregar' id='Fagregar' method='POST' action=$redir>"; 
+    echo "<fieldset id='campos'>";
+    echo "<h4>Datos Nueva Formula Nro".$idformula."</h4>";
+    echo "</fieldset>";
+    echo "<fieldset id='botones'>";  
+    echo "<br>";
+    echo "<label for='Agregar'>Seleccion Materiales Empaque Formula Nro".$idformula." </label>";
+    echo "<br>";
+     echo "<select id='Casa' name='MEmpFormula[]' class='form-control' multiple>"; 
+     if (isset($casas)) {
+     for ($i=0; $i <count($casas) ; $i++) {  
+          $id=$casas[$i]['id'];  
+          $Nom=$casas[$i]['nombre'];
+          echo "<option value=".$id.">".$Nom."</option>";
+          } 
+      } 
+     echo "</select>";
+    echo "<small id='emailHelp' class='form-text text-muted'>Para seleccion multiple mantener tecla ctrl sostenida y presione clic sobre elemento de la lista</small> "; 
+    echo "<small id='emailHelp' class='form-text text-muted'>Seleccione los materiales de empaque necesarios para envasado, almacenaje o distribucion de formula.</small> ";
+    echo "<br>";
+    echo "<label for='Agregar'>Seleccion Materias Primas Formula Nro".$idformula." </label>";
+    echo "<br>";
+    echo "<select id='Genero' name='MPriFormula[]' class='form-control' multiple>";
+    if (isset($CamposEdit)) {
+     for ($i=0; $i <count($CamposEdit) ; $i++) {  
+          $id=$CamposEdit[$i]['id'];  
+          $Nom=$CamposEdit[$i]['nombre'];
+          echo "<option value=".$id.">".$Nom."</option>";
+          } 
+     } 
+     echo "</select>"; 
+     echo "<small id='emailHelp' class='form-text text-muted'>Seleccione las materias primas necesarias para fabricacion de formula (Solvente, aditivos, colorantes... etc).</small> ";
+     echo "<br>";
+    echo '<div class="container">';
+    $link=BASE_URL.'admin'.DS.'Lista_MPrimas';
+    echo "<input type='submit' name='AgregarProveedor' id='e' class='btn btn-success' value='Agregar'>";
+    echo '<a href='.$link.' class="btn btn-warning" role="button">Ver Registros</a>';
+    echo '</div>';
+    echo  "</fieldset>";
+    echo "</form>";
+} 
+
+  if ($ver_vista=='Dosificar_Formula') { 
+    $redir=BASE_URL.'admin'.DS.'Dosificar_Formula'.DS.$idformula;
+    echo "<form name='Agregar' id='Fagregar' method='POST' action=$redir>"; 
+    echo "<fieldset id='campos'>";
+    echo "<h4>Dosificacion Formula Nro".$idformula."</h4>";
+    echo "</fieldset>";
+    echo "<br>";
+    echo "<h5>Unidades de empaque necesarias por formula</h5>";
+    echo "<div class='form-group row'>";
+    echo "<label for='example-text-input' class='col-2 col-form-label'>Nombre</label>";
+    echo "<div class='col-10'>";
+    echo "<label for='example-text-input' class='col-10 col-form-label'>Cantidad Unidades Empaque (PU) Formula</label>";
+    echo "</div>";
+    echo "</div>"; 
+    if (isset($casas)) {
+    for ($i=0; $i <count($casas) ; $i++) {
+     $id=$casas[$i]['id'];
+     $nom=$casas[$i]['nombre'];  
+    echo "<div class='form-group row'>";
+    echo "<label for='example-text-input' class='col-2 col-form-label'>".$nom."</label>";
+    echo "<div class='col-10'>";
+    echo "<input class='form-control' type='text' name=emp[] value=1 id='example-text-input'>";
+    echo "</div>";
+    echo "</div>";
+       } 
+      } 
+    echo "<br>";
+    echo "<h5>Porcentaje formula dosis cada materia prima</h5>";
+    echo "<div class='form-group row'>";
+    echo "<label for='example-text-input' class='col-2 col-form-label'>Nombre</label>";
+    echo "<div class='col-10'>";
+    echo "<label for='example-text-input' class='col-10 col-form-label'>Porcentaje Materia Prima (PU) Formula</label>";
+    echo "</div>";
+    echo "</div>";  
+    if (isset($CamposEdit)) {
+    for ($i=0; $i <count($CamposEdit) ; $i++) { 
+     $id=$CamposEdit[$i]['id']; 
+     $nom=$CamposEdit[$i]['nombre']; 
+    echo "<div class='form-group row'>";
+    echo "<label for='example-text-input' class='col-2 col-form-label'>".$nom."</label>";
+    echo "<div class='col-10'>";
+    echo "<input class='form-control' type='text' name=mpr[] value=0 id='example-text-input'>";
+    echo "</div>";
+    echo "</div>";         
+     } 
+    }   
+    echo '<div class="container">';
+    $link=BASE_URL.'admin'.DS.'Dosificar_Formula'.DS.$idformula;
+    echo "<input type='submit' name='AgregarProveedor' id='e' class='btn btn-success' value='Agregar'>";
+    echo '<a href='.$link.' class="btn btn-warning" role="button">Ver Registros</a>';
+    echo '</div>';
+    echo "</form>";           
+     }   
+     
+    if ($ver_vista=='ListaComp_Formula') {
+      if (isset($casas)) {  
+      echo "<h2>LISTADO COMPONENTES FORMULA Nro".$idformula."</h2>";
+      echo "<br>";
+      $redir=BASE_URL.'admin'.DS.'Gestion'.DS.'Productos';
+      echo "<a class='btn btn-success' style='font-size: 20px;' title='Graba una pregunta' href=".$redir."><i class='fa fa-plus-square' aria-hidden='true'></i>&nbsp;Nuevo Producto</a>";
+      echo "<br>";
+      echo "<br>";
+      echo "<h4>Listado Materiales Empaque Formula Nro".$idformula."</h4>";
+      echo "<br>";
+                echo "<table>";
+                 echo "<thead>";
+                    echo "<tr>";
+                        echo "<th>ID Comp</th>";
+                        echo "<th>Nombre</th>";
+                        echo "<th>Tipo</th>";
+                        echo "<th>Uds/Form</th>";
+                        echo "<th>Editar</th>";
+                     echo "</tr>";
+                 echo "</thead>";
+              echo "<tbody>"; 
+      for ($i=0; $i <count($casas) ; $i++) {  
+          $id=$casas[$i]['idproducto'];
+          $nom=$casas[$i]['nombre'];
+          $cod=$casas[$i]['tipo_producto'];
+          $casa=$casas[$i]['porcentaje_formula'];
+            echo "<tr>";
+               echo "<td>".$id."</td>";   
+               echo "<td>".$nom."</td>"; 
+               echo "<td>".$cod."</td>"; 
+               echo "<td>".$casa."</td>";  
+               $editar=BASE_URL.'admin'.DS.'Editar_Formula'.DS.$idformula.'-'.$id;
+                echo "<td><a class='btn btn-warning' style='font-size: 15px;' title='Editar Producto' href=".$editar."><i class='fa fa-pencil' aria-hidden='true' fa-2x></i></a></td>"; 
+            echo "</tr>"; 
+      }
+            echo "</tbody>";
+            echo "</table>"; 
+      }
+      if (isset($CamposEdit)) {  
+      echo "<br>";
+      echo "<br>";
+      echo "<h4>Listado Materias Primas Formula Nro".$idformula."</h4>";
+      echo "<br>";
+                echo "<table>";
+                 echo "<thead>";
+                    echo "<tr>";
+                        echo "<th>ID Comp</th>";
+                        echo "<th>Nombre</th>";
+                        echo "<th>Tipo</th>";
+                        echo "<th>%Por/Form</th>";
+                        echo "<th>Editar</th>";
+                     echo "</tr>";
+                 echo "</thead>";
+              echo "<tbody>"; 
+      for ($i=0; $i <count($CamposEdit); $i++) {  
+          $id=$CamposEdit[$i]['idproducto'];
+          $nom=$CamposEdit[$i]['nombre'];
+          $cod=$CamposEdit[$i]['tipo_producto'];
+          $casa=$CamposEdit[$i]['porcentaje_formula'];
+            echo "<tr>";
+               echo "<td>".$id."</td>";   
+               echo "<td>".$nom."</td>"; 
+               echo "<td>".$cod."</td>"; 
+               echo "<td>".$casa."</td>";  
+               $editar=BASE_URL.'admin'.DS.'Editar_Formula'.DS.$idformula.'-'.$id;
+                echo "<td><a class='btn btn-warning' style='font-size: 15px;' title='Editar Producto' href=".$editar."><i class='fa fa-pencil' aria-hidden='true' fa-2x></i></a></td>"; 
+            echo "</tr>"; 
+      }
+            echo "</tbody>";
+            echo "</table>"; 
+      }
+    } 
+
+  if ($ver_vista=='Editar_Componente') {
+    if (isset($casas)){  
+      $id=$casas['idproducto'];
+    // $redir=BASE_URL.'admin'.DS.'Actualizar_Formula'.DS.$idformula;
+    $redir=BASE_URL.'admin'.DS.'ActualizarComp_Formula'.DS.$idformula.'-'.$id;
+    echo "<form name='Agregar' id='Fagregar' method='POST' action=$redir>"; 
+    echo "<fieldset id='campos'>";
+    echo "<h4>Dosificacion Formula Nro".$idformula."</h4>";
+    echo "</fieldset>";
+    echo "<br>";
+    echo "<br>";
+    echo "<h5>Modificacion Dosis Componente".$id." Formula Nro".$idformula."</h5>";
+      echo "<br>";
+                echo "<table>";
+                 echo "<thead>";
+                    echo "<tr>";
+                        echo "<th>ID Comp</th>";
+                        echo "<th>Nombre</th>";
+                        echo "<th>Tipo</th>";
+                        if ($casas['tipo_producto']=='empaque') {
+                          echo "<th>Uds/Form</th>";
+                        } else{
+                          echo "<th>%Por/Form</th>";
+                        }  
+                        
+                        echo "<th>Guardar</th>";
+                     echo "</tr>";
+                 echo "</thead>";
+              echo "<tbody>"; 
+          $id=$casas['idproducto'];
+          $nom=$casas['nombre'];
+          $cod=$casas['tipo_producto'];
+          $casa=$casas['porcentaje_formula'];
+            echo "<tr>";
+               echo "<td>".$id."</td>";   
+               echo "<td>".$nom."</td>"; 
+               echo "<td>".$cod."</td>"; 
+               echo "<td><input class='col-xs-2' type='text' name='mpr' value=".$casa."></td>"; 
+               // $editar=BASE_URL.'admin'.DS.'ActualizarComp_Formula'.DS.$idformula.'-'.$id.'-'.$casa;
+               //  echo "<td><a class='btn btn-warning' style='font-size: 15px;' title='Editar Producto' href=".$editar."><i class='fa fa-pencil' aria-hidden='true' fa-2x></i></a></td>"; 
+               echo "<td><input type='submit' name='AgregarProveedor' id='e' class='btn btn-success' value='Agregar'></td>"; 
+            echo "</tr>"; 
+      }
+            echo "</tbody>";
+            echo "</table>"; 
+          echo "</form>"; 
+    }
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+Vistas Bitcoin -->
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+  if ($ver_vista=='Dinero_internet') {
+   $redir=BASE_URL.'admin'.DS.'Nuevo_Enlace';
+    echo "<form name='Agregar' id='Fagregar' method='POST' action=$redir>"; 
+    echo "<fieldset id='campos'>";
+    echo "<h4>Datos Nueva Casa </h4>";
+    echo "</fieldset>";
+    echo "<fieldset id='botones'>";  
+    echo "<input type='text' id='Enlace' class='form-control' placeholder='Ingrese enlace' name='NombreEnlace' required='required'>";
+     echo "</select>";
+        echo "<select id='enlace' name='TipoCobro' class='form-control'>";   
+        echo "<option value='bitcoin'>bitcoin</option>";
+        echo "<option value='dolar-euro'>dolar-euro</option>";
+     echo "</select>";
+    echo '<div class="container">';
+    $link=BASE_URL.'admin'.DS.'Lista_Enlace';
+    echo '<a href='.$link.' class="btn btn-info" role="button">Listar paginas </a>';
+    echo '<button type="button" class="btn btn-info">Button</button>';
+    echo '<input type="button" class="btn btn-info" value="Input Button">';
+    echo "<input type='submit' name='AgregarProveedor' id='e' class='btn btn-primary' value='Agregar'>";
+    echo '</div>';
+    echo  "</fieldset>";
+    echo "</form>";
+  } 
+
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+Cierre vistas-->
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+?>
